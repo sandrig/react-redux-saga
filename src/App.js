@@ -1,6 +1,6 @@
 import React from 'react';
-import { PostForm } from './components/post-form';
-import { Posts } from './components/post-list';
+import PostForm from './components/post-form';
+import PostList from './components/post-list';
 import { FetchedPosts } from './components/fetched-posts';
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
       <div className="row">
         <div className="col">
           <h2>Синхронные посты</h2>
-          <Posts />
+          <PostList />
         </div>
         <div className="col">
           <h2>Асинхронные посты</h2>

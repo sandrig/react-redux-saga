@@ -6,13 +6,11 @@ const PostList = ({ syncPosts }) => {
   if (!syncPosts.length) {
     return <p className="text-center">Постов пока нет</p>
   }
-  return syncPosts.map(post => <Post post={post} key={post} />)
+  return syncPosts.map(post => <Post post={post} key={post.id} />)
 };
 
 const mapStateToProps = (state) => ({
   syncPosts: state.posts.posts
 });
 
-const enhance = connect(mapStateToProps, null);
-
-export const Posts = enhance(PostList);
+export default connect(mapStateToProps, null)(PostList);
