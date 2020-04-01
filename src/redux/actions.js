@@ -32,12 +32,17 @@ export const hideAlert = () => ({
 
 export const fetchPosts = () => {
   return async dispatch => {
-    dispatch(showLoader());
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');
-    const json = await response.json();
-    setTimeout(() => {
-      dispatch({ type: FETCH_POSTS, payload: json });
+    try {
+      dispatch(showLoader());
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');
+      const json = await response.json();
+      setTimeout(() => {
+        dispatch({ type: FETCH_POSTS, payload: json });
+        dispatch(hideLoader());
+      }, 500)
+    } catch (e) {
+      dispatch(showAlert('Что-то пошло не так'));
       dispatch(hideLoader());
-    }, 500)
+    }
   }
 };
