@@ -1,4 +1,4 @@
-import { CREATE_POST, FETCH_POSTS, HIDE_LOADER, SHOW_LOADER } from './types';
+import { CREATE_POST, FETCH_POSTS, HIDE_ALERT, HIDE_LOADER, SHOW_ALERT, SHOW_LOADER } from './types';
 
 export const createPost = post => ({
   type: CREATE_POST,
@@ -11,6 +11,23 @@ export const showLoader = () => ({
 
 export const hideLoader = () => ({
   type: HIDE_LOADER
+});
+
+export const showAlert = text => {
+  return dispatch => {
+    dispatch({
+      type: SHOW_ALERT,
+      payload: text
+    });
+
+    setTimeout(() => {
+      dispatch(hideAlert());
+    }, 3000)
+  }
+};
+
+export const hideAlert = () => ({
+  type: HIDE_ALERT
 });
 
 export const fetchPosts = () => {
